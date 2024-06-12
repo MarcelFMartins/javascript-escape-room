@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo/estilo.css" type="text/css">
+    <style>
+        body {
+            background-color: black;
+        }
+    </style>
+    <title>PUZZLE 01</title>
+</head>
+<body>
+    <div id="containerfase1">
+        <p id="timer"></p> 
+        <button class="butaoObjetivo" onclick="mostrarObjetivo()">Objetivo</button>
+        <div id="divObjetivo" style="display: none;">
+            <h2>Objetivo:<br>Ache a chave de Fenda<br>e<br>Conserte o Ar-Condicionado</h2>
+        </div>
+        <div class="arcondicionado">
+            <div class="object">
+                <img src="img/puzzle 1/ar-condicionado.png" class="arcondicionado" onclick="PrecisaDaChave()">
+                <div class="hint" id="arcondicionadoHint">
+                    <p>Para consertar o ar-condicionado, você precisa encontrar a chave de fenda!</p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <img src="img/puzzle 1/armario-de-roupa.png" class="armario" onclick="NaoAchou()">
+        </div>
+        <div>
+            <img src="img/puzzle 1/cama-de-casal.png" class="cama" onclick="NaoAchou()">
+        </div>
+        <div>
+            <img src="img/puzzle 1/luminaria-abajur.png" class="abajur" onclick="NaoAchou()">
+        </div>
+        <div>
+            <img src="img/puzzle 1/comoda.png" class="comoda" onclick="ChavedeFenda()">
+        </div>
+    </div>
+    <a href="index.html">
+        <div class="inicio">
+            <p>Voltar</p>
+        </div>
+    </a>
+    <br>
+    <script>
+        function mostrarObjetivo() {
+            var divObjetivo = document.getElementById("divObjetivo");
+            if (divObjetivo.style.display === "none") {
+                divObjetivo.style.display = "block";
+            } else {
+                divObjetivo.style.display = "none";
+            }
+        }
+
+        var arcondicionadoConsertado = false;
+
+        function PrecisaDaChave() {
+            alert("Ops! Para consertar o Ar-Condicionado você precisa da chave de fenda!");
+        }
+        function NaoAchou () {
+            alert("Ops! Você não achou nada, procure em outro lugar!");
+        }
+
+        function ChavedeFenda () {
+            var chaveDeFendaEncontrada = confirm("Você encontrou uma chave de fenda. Deseja usá-la para consertar o ar-condicionado?");
+            if (chaveDeFendaEncontrada) {
+                    arcondicionadoConsertado = true;
+                    document.getElementById("arcondicionadoHint").style.display = "none";
+                    alert("Parabéns! Você consertou o ar-condicionado e escapou do quarto!");
+                    window.location.replace('sala2.html');
+                }
+        }
+        const initialTimerDuration = 180;
+
+        const timerElement = document.getElementById("timer");
+
+        function updateTimer(duration) {
+        const minutes = Math.floor(duration / 60);
+        const seconds = duration % 60;
+        timerElement.textContent = `${minutes}:${
+            seconds < 10? "0" : ""
+        }${seconds}`;
+        }
+
+        function startTimer() {
+        let timerDuration = initialTimerDuration;
+        updateTimer(timerDuration);
+        timer = setInterval(() => {
+            timerDuration--;
+            if (timerDuration < 0) {
+            clearInterval(timer);
+
+            alert("Game Over!");
+            window.location.href = "index.html";
+            } else {
+            updateTimer(timerDuration);
+            }
+        }, 1000);
+        }
+
+        window.onload = function () {
+            startTimer();
+        };
+    </script>
+    
+</body>
+</html>

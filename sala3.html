@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo/estilo.css" type="text/css">
+    <style>
+        body {
+            background-color: black;
+        }
+    </style>
+    <title>PUZZLE 03</title>
+</head>
+<body>
+    <div id="containerfase1">
+        <p id="timer"></p> 
+    </div>
+    <a href="sala2.html">
+        <div class="inicio">
+            <p>Voltar</p>
+        </div>
+    </a>
+    <br>
+    <script>
+        const initialTimerDuration = 180;
+
+        const timerElement = document.getElementById("timer");
+
+        function updateTimer(duration) {
+        const minutes = Math.floor(duration / 60);
+        const seconds = duration % 60;
+        timerElement.textContent = `${minutes}:${
+            seconds < 10? "0" : ""
+        }${seconds}`;
+        }
+
+        function startTimer() {
+        let timerDuration = initialTimerDuration;
+        updateTimer(timerDuration);
+        timer = setInterval(() => {
+            timerDuration--;
+            if (timerDuration < 0) {
+            clearInterval(timer);
+
+            alert("Game Over!");
+            window.location.href = "index.html";
+            } else {
+            updateTimer(timerDuration);
+            }
+        }, 1000);
+        }
+
+        window.onload = function () {
+            startTimer();
+        };
+    </script>
+</body>
+</html>

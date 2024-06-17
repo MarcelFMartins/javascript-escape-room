@@ -14,12 +14,24 @@
     <title>PUZZLE 02</title>
 </head>
 <body>
-    <div id="containerfase1">
+    <div id="containerfase2">
         <p id="timer"></p>
         <button class="butaoObjetivo" onclick="mostrarObjetivo()">Objetivo</button>
         <div id="divObjetivo" style="display: none;">
-            <h2>Objetivo:<br>Ache a chave de Fenda<br>e<br>Conserte o Ar-Condicionado</h2>
-        </div> 
+            <h2>Objetivo:<br>Conserte a geladeira colocando <br>as peças quebradas no lugar certo!</h2>
+        </div>
+        <div class="cozinha-images">
+            <img src="img/puzzle 2/armario-de-cozinha.png" class="armario-cozinha" onclick="AquiNaoTemNada()">
+            <img src="img/puzzle 2/cozinha.png" class="cozinha" onclick="AquiNaoTemNada()">
+            <img src="img/puzzle 2/fogao-a-gas.png" class="fogao" onclick="AquiNaoTemNada()">
+            <div id="geladeira-game" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <img src="img/puzzle 2/geladeira-quebrada.png" class="geladeira-quebrada" onclick="Geladeria()">
+                <img src="img/puzzle 2/geladeira-peca1.png" id="geladeira-peca1" class="geladeira-piece" draggable="true" ondragstart="drag(event)">
+                <img src="img/puzzle 2/geladeira-peca2.png" id="geladeira-peca2" class="geladeira-piece" draggable="true" ondragstart="drag(event)">
+                <img src="img/puzzle 2/geladeira-peca3.png" id="geladeira-peca3" class="geladeira-piece" draggable="true" ondragstart="drag(event)">
+            </div>
+            <img src="img/puzzle 2/pia-da-cozinha.png" class="pia" onclick="AquiNaoTemNada()">
+        </div>
     </div>
     <a href="sala1.html">
         <div class="inicio">

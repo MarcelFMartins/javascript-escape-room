@@ -1,3 +1,5 @@
+// --------; TIMER ;-------------- //
+
 const initialTimerDuration = 180;
 
 const timerElement = document.getElementById("timer");

@@ -14,12 +14,143 @@
     <title>PUZZLE 03</title>
 </head>
 <body>
-    <div id="containerfase1">
+    <div id="containerfase3">
         <p id="timer"></p>
         <button class="butaoObjetivo" onclick="mostrarObjetivo()">Objetivo</button>
         <div id="divObjetivo" style="display: none;">
-            <h2>Objetivo:<br>Ache a chave de Fenda<br>e<br>Conserte o Ar-Condicionado</h2>
+            <h2>Objetivo:<br>Descubra a Senha no PC</h2>
         </div> 
+        <div>
+            <img src="img/puzzle 3/estante-de-livros (1).png" class="estante1" onclick="AquiNaoTemNada()">
+        </div>
+        <div>
+            <img src="img/puzzle 3/estante-de-livros.png" class="estante2" onclick="AquiNaoTemNada()">
+        </div>
+        <div>
+            <img src="img/puzzle 3/local-de-trabalho.png" class="pc" onclick="mostrarJogo()">
+            <div id="jogosenha" style="display: none;">
+                <div id="jogo-senhas ">
+                    <script>
+                        var timerDisplay = document.getElementById('timer');
+                        var messageBox = document.getElementById('message-box');
+                        var timeLeft = 120
+                
+                        function formatTime(seconds) {
+                            var minutes = Math.floor(seconds / 60);
+                            var remainingSeconds = seconds % 60;
+                            return minutes.toString().padStart(2, '0') + ':' + remainingSeconds.toString().padStart(2, '0');
+                        }
+                
+                        function updateTimer() {
+                            timeLeft--;
+                            if (timeLeft >= 0) {
+                                timerDisplay.textContent = formatTime(timeLeft);
+                            } else {
+                                clearInterval(timerInterval);
+                                messageBox.style.display = 'block';
+                            }
+                        }
+                
+                        var timerInterval = setInterval(updateTimer, 1000);
+                    </script>
+
+                    <div id="game-box">
+                        <p id="message">Digite a senha secreta:</p>
+                        <div id="input-box">
+                            <input type="text" id="password-input" placeholder="Senha">
+                        </div>
+                        <button id="submit-button">Enviar</button>
+                        <p id="feedback"></p>
+                        <div id="hints-container">
+                            <p style="margin-bottom: 10px;" class="hint" id="hint1"></p>
+                            <p style="margin-bottom: 10px;" class="hint" id="hint2"></p>
+                            <p style="margin-bottom: 10px;" class="hint" id="hint3"></p>
+                            <p style="margin-bottom: 10px;" class="hint" id="hint4"></p>
+                        </div>
+
+                        <script>
+                            const senhaSECRETA = "1234";
+                            const tentativasMax = 5;
+                            const dicas = [
+                                "Dica 1: A senha tem 4 dígitos.",
+                                "Dica 2: A senha começa com '1'.",
+                                "Dica 3: O segundo dígito é '2'.",
+                                "Dica 4: A senha termina com '4'."
+                            ];
+                            
+                            let tentativas = 0;
+                            const messageElement = document.getElementById('message');
+                            const feedbackElement = document.getElementById('feedback');
+                            const submitButton = document.getElementById('submit-button');
+                            const passwordInput = document.getElementById('password-input');
+                            const hints = document.querySelectorAll('.hint');
+                    
+                            // Mostrar a primeira dica no início
+                            hints[0].textContent = dicas[0];
+                    
+                            submitButton.addEventListener('click', checkPassword);
+                    
+                            function checkPassword() {
+                                const senhaDIGITADA = passwordInput.value;
+                    
+                                // Mostrar dicas baseadas no número de tentativas
+                                if (tentativas === 1) {
+                                    hints[1].textContent = dicas[1]; // Dica 2
+                                } else if (tentativas === 2) {
+                                    hints[2].textContent = dicas[2]; // Dica 3
+                                } else if (tentativas === 3) {
+                                    hints[3].textContent = dicas[3]; // Dica 4
+                                }
+                    
+                                if (senhaDIGITADA === senhaSECRETA) {
+                                    messageElement.textContent = "Programa liberado.";
+                                    feedbackElement.textContent = "";
+                                    passwordInput.disabled = true;
+                                    submitButton.disabled = true;
+                                    sucesso.style.display = "block"; 
+                                    jogosenha.style.display = "none";
+                                    return;
+                                } else {
+                                    feedbackElement.textContent = "Senha incorreta. Tente novamente.";
+                                    tentativas++;
+                                }
+                    
+                                if (tentativas === tentativasMax) {
+                                    messageElement.textContent = "Você excedeu o número de tentativas. Programa bloqueado.";
+                                    feedbackElement.textContent = "";
+                                    passwordInput.disabled = true;
+                                    submitButton.disabled = true;
+                                    jogosenha.style.display = "none";
+                                }
+                    
+                                passwordInput.value = "";
+                                passwordInput.focus();
+                            }
+                        </script>
+
+                    </div>
+                </div>
+            </div> 
+        </div>
+        <div>
+            <img src="img/puzzle 3/quadro.png" class="quadro-sala" onclick="AquiNaoTemNada()">
+        </div>
+        <div>
+            <img src="img/puzzle 3/sala-de-estar.png" class="sala-de-estar" onclick="AquiNaoTemNada()">
+        </div>
+        <div>
+            <img src="img/puzzle 3/janela-da-sala-de-estar-com-cortinas.png" class="janela" onclick="AquiNaoTemNada()">
+        </div>
+        <div>
+            <img src="img/puzzle 3/mesa-da-sala-de-estar-com-um-pequeno-jarro.png" class="mesadesala" onclick="AquiNaoTemNada()">
+        </div>
+        <div id="sucesso" style="display: none;">
+            <h2 id="telasucesso">
+                Parabéns:<br>Você concluiu o Game!!
+                <button id="botaosucesso" onclick="window.location.replace('index.html')">Ir para o Inicio</button>
+            </h2>
+
+        </div>
     </div>
     <a href="sala2.html">
         <div class="inicio">
